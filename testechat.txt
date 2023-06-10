@@ -1,0 +1,43 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+void atualizarCoordenada(const std::string& nomeArquivo, int linha, int coluna, const std::string& novoTexto) {
+    // Ler o conteúdo do arquivo
+    std::ifstream arquivoLeitura(nomeArquivo);
+    std::vector<std::string> linhas;
+
+    std::string linhaAtual;
+    while (std::getline(arquivoLeitura, linhaAtual)) {
+        linhas.push_back(linhaAtual);
+    }
+    arquivoLeitura.close();
+
+    // Atualizar o texto na coordenada específica
+    if (linha >= 0 && linha < linhas.size()) {
+        std::string& linhaDesejada = linhas[linha];
+        if (coluna >= 0 && coluna < linhaDesejada.length()) {
+            linhaDesejada[coluna] = novoTexto[0];
+        }
+    }
+
+    // Escrever o conteúdo atualizado de volta para o arquivo
+    std::ofstream arquivoEscrita(nomeArquivo);
+    for (const std::string& linha : linhas) {
+        arquivoEscrita << linha << std::endl;
+    }
+    arquivoEscrita.close();
+}
+
+int main() {
+    std::string nomeArquivo = "arquivo.txt";
+    int linha = 2; // Linha desejada (a primeira linha tem índice 0)
+    int coluna = 5; // Coluna desejada (a primeira coluna tem índice 0)
+    std::string novoTexto = "X"; // Novo texto a ser escrito na coordenada
+
+    atualizarCoordenada(nomeArquivo, linha, coluna, novoTexto);
+
+    std::cout << "Coordenada atualizada com sucesso." << std::endl;
+
+    return 0;
+}

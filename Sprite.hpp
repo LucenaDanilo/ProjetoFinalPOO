@@ -12,14 +12,15 @@ class Sprite : public SpriteBase {
 public:
 
     Sprite( string );
+    //Sprite( const Sprite& ) {}
 
-    virtual void draw(SpriteBase*, int, int) const;
+    virtual void desenharEm(SpriteBase&, int, int) const {}
+    virtual void draw(Sprite&, int, int) const;
+    virtual void show() const;
 
 private:
-    string path;
     vector<string> vecString;
     int h, w;
-
 };
 
 #endif

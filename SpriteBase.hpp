@@ -1,13 +1,22 @@
 #ifndef SPRITEBASE
 #define SPRITEBASE
 
+#include <iostream>
+
+using std::string;
+
 class SpriteBase {
 public:
 
-    SpriteBase() {}
+    SpriteBase( string p ) : path (p) {}
     ~SpriteBase() {}
 
-    virtual void draw(SpriteBase*, int, int) const = 0;
+    virtual void desenharEm(SpriteBase&, int, int) const = 0;
+    virtual void show() const = 0;
+
+    
+    string path;
+    
 };
 
 #endif

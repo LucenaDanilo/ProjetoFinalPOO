@@ -11,7 +11,10 @@ public:
 
     static void run();
 
-    static SpriteBase *pScreen;
+    static Sprite screen;
+private:
+    
+    static Sprite screenLimpa;
 };
 
 #endif
