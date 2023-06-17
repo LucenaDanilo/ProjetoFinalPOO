@@ -2,23 +2,27 @@
 #define SPRITEBASE
 
 #include <iostream>
+#include "GameBase.hpp"
 
 using std::string;
+class Sprite;
 
-class SpriteBase {
+class SpriteBase : public GameBase {
 public:
 
     SpriteBase( string p ) : path (p) {}
     ~SpriteBase() {}
 
-    virtual void desenharEm(SpriteBase&, int, int) const = 0;
-    virtual void show() const = 0;
+    virtual void init() = 0;
+    virtual void update() = 0;
+    virtual void draw() = 0;
+    virtual void draw(Sprite&, int, int) const = 0;
 
+    virtual void show() const = 0;
     virtual void setPath( string ) = 0;
 
 protected:
     string path;
-    
 };
 
 #endif

@@ -52,5 +52,4 @@ void Sprite::draw(Sprite& screen, int x, int y) const {
         }
         countX++;
     }
-
 }

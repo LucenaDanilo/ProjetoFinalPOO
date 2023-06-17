@@ -3,6 +3,7 @@
 #include "Sprite.hpp"
 #include "SpriteBase.hpp"
 #include "ObjetoDeJogo.hpp"
+#include "Helicoptero.hpp"
 
 int main() {
 

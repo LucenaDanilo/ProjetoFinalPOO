@@ -14,9 +14,8 @@ void Fase::init() {
     ilha2.setPath("./Sprites/ilha");
 
     // iniciando os objetos de jogo
-    //Helicoptero heroi; // ERRO AQUI NA CRIAÇÃO DO HELICOPTERO
-
-    // listObjJogo.push_front();
+    Helicoptero* heroi = new Helicoptero;
+    listObjJogo.push_back(heroi);
 }
 
 void Fase::update() {
@@ -24,11 +23,17 @@ void Fase::update() {
 }
 
 void Fase::draw() {
-    // desenhar o background
-    // desenhar todos os objetos de jogo
+    // desenhando o background...
     background.draw(Game::screen, 7, 8);
     ilha1.draw(Game::screen, 24, 35);
     ilha2.draw(Game::screen, 24, 85);
+
+    // desenhar todos os objetos de jogo
+    for (const auto&obj : listObjJogo) {
+        if (obj->getAtivo())
+            obj->draw();
+    }
+
     Game::screen.show();
 }
 

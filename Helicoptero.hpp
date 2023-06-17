@@ -9,12 +9,13 @@ public:
 
     virtual void init() {}
     virtual void update() {}
-    virtual void draw() {}
+    virtual void draw();
 
 private:
     int carga;
     int tanque;
     int pessoas;
+    string path;
 };
 
 #endif

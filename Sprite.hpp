@@ -14,8 +14,12 @@ public:
     Sprite( string = "");
     //Sprite( const Sprite& ) {}
 
-    virtual void desenharEm(SpriteBase&, int, int) const {}
+    virtual void init() {}
+    virtual void update() {}
+
+    virtual void draw() {}
     virtual void draw(Sprite&, int, int) const;
+
     virtual void show() const;
 
     virtual void setPath( string );

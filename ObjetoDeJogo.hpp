@@ -6,7 +6,7 @@
 
 class ObjetoDeJogo : public GameBase {
 public:
-    ObjetoDeJogo();
+    ObjetoDeJogo(const string&);
 
     virtual void init() = 0;
     virtual void update() = 0;
@@ -17,14 +17,18 @@ public:
     void ativa();
     void desativa();
 
-    void setPosX();
-    void setPosY();
+    void setPosX(int);
+    void setPosY(int);
+    void setSprite(const string&);
 
     int getPosX() const;
     int getPosY() const;
+    bool getAtivo() const;
 
 protected:
     SpriteBase* objSprite;
+
+private:
     int x, y;
     bool ativo;
 };
