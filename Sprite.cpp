@@ -8,6 +8,13 @@ using std::ifstream, std::getline, std::cout, std::endl;
 
 Sprite::Sprite( string path ) : SpriteBase(path) , w(0), h(0) {
 
+    if (path != "")
+        setPath(path);
+}
+
+void Sprite::setPath( string p ) {
+    path = p;
+
     ifstream file(path);
 
     if (file.is_open()) {

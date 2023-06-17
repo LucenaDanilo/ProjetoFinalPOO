@@ -12,7 +12,7 @@ using std::list;
 class Fase : public GameBase {
 public:
 
-    Fase( const string &backPath  = "./Sprites/pontes");
+    Fase();
 
     void show();
 
@@ -20,9 +20,12 @@ public:
     virtual void update();
     virtual void draw();
 
+    void setObjetoJogo(ObjetoDeJogo*);
+
 
 private:
     Sprite background;
+    Sprite ilha1, ilha2;
     list<ObjetoDeJogo*> listObjJogo;
 
 };

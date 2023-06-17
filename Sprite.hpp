@@ -11,12 +11,14 @@ using std::string, std::vector;
 class Sprite : public SpriteBase {
 public:
 
-    Sprite( string );
+    Sprite( string = "");
     //Sprite( const Sprite& ) {}
 
     virtual void desenharEm(SpriteBase&, int, int) const {}
     virtual void draw(Sprite&, int, int) const;
     virtual void show() const;
+
+    virtual void setPath( string );
 
 private:
     vector<string> vecString;

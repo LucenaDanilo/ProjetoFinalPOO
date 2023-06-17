@@ -14,7 +14,9 @@ public:
     virtual void desenharEm(SpriteBase&, int, int) const = 0;
     virtual void show() const = 0;
 
-    
+    virtual void setPath( string ) = 0;
+
+protected:
     string path;
     
 };
