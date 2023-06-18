@@ -13,19 +13,20 @@ class Fase : public GameBase {
 public:
 
     Fase();
+    ~Fase();
 
     void show();
 
     virtual void init();
+    virtual void draw() const;
     virtual void update();
-    virtual void draw();
-
+    
     void initBackgroud();
     void initObjetosJogo();
 
     void drawBackground() const;
     void drawObjetosJogo() const;
-    
+
     void updateColisao() const;
     void updateObjetosJogo(string) const;
 

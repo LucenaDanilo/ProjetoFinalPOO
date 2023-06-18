@@ -10,7 +10,7 @@ public:
     virtual void init() {}
     virtual void update() {}
     virtual void update(string) {}
-    virtual void draw();
+    virtual void draw() const ;
 
     virtual int getPeso() const { return peso;}
     virtual void setPeso(int p) {peso = p;}

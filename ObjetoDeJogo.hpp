@@ -13,7 +13,7 @@ public:
     virtual void init() = 0;
     virtual void update() = 0;
     virtual void update(string) = 0;
-    virtual void draw() = 0;
+    virtual void draw() const = 0;
 
     bool colideCom(const ObjetoDeJogo&) const;
     void moveTo(int, int);

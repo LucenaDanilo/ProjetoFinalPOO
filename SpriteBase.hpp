@@ -15,7 +15,7 @@ public:
 
     virtual void init() = 0;
     virtual void update() = 0;
-    virtual void draw() = 0;
+    virtual void draw() const = 0;
     virtual void draw(Sprite&, int, int) const = 0;
 
     virtual void show() const = 0;

@@ -13,7 +13,7 @@ public:
     virtual void init();
     virtual void update() {}
     virtual void update(string);
-    virtual void draw();
+    virtual void draw() const;
 
     void setSpriteGas(Sprite*);
     void setSpriteLoud(Sprite*);

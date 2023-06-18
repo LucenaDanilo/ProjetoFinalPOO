@@ -19,7 +19,7 @@ void Helicoptero::init() {
     this->setSpriteLoud(loud);
 }
 
-void Helicoptero::draw() {
+void Helicoptero::draw() const {
     int x = getPosX();
     int y = getPosY();
 

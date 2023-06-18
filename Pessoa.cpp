@@ -8,7 +8,7 @@ Pessoa::Pessoa(int x, int y) : ObjetoDeJogo("./Sprites/pessoa") , peso(55) {
     ativa();
 }
 
-void Pessoa::draw() {
+void Pessoa::draw() const {
     int x = getPosX();
     int y = getPosY();
     objSprite->draw(Game::screen, x, y);
