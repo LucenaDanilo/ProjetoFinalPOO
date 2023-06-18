@@ -7,7 +7,7 @@
 #include "Sprite.hpp"
 #include "ObjetoDeJogo.hpp"
 
-using std::list;
+using std::list, std::string;
 
 class Fase : public GameBase {
 public:
@@ -20,13 +20,22 @@ public:
     virtual void update();
     virtual void draw();
 
-    void setObjetoJogo(ObjetoDeJogo*);
+    void initBackgroud();
+    void initObjetosJogo();
 
+    void drawBackground() const;
+    void drawObjetosJogo() const;
+    
+    void updateColisao() const;
+    void updateObjetosJogo(string) const;
+
+    void setObjetoJogo(ObjetoDeJogo*);
 
 private:
     Sprite background;
     Sprite ilha1, ilha2;
     list<ObjetoDeJogo*> listObjJogo;
+    int resgatados;
 
 };
 
