@@ -67,5 +67,5 @@ void Sprite::limpaScreen(const Sprite &screenLimpa) {
 }
 
 void Sprite::copiaString(const string &s) {
-    vecString[0] = s;
+    this->vecString[0] = s;
 }

@@ -18,6 +18,11 @@ void Fase::init() {
     Helicoptero* heroi = new Helicoptero;
     Sprite* gas = new Sprite;
     Sprite* loud = new Sprite;
+    gas->setPath("./Sprites/tanque");
+    loud->setPath("./Sprites/carga");
+    heroi->setSpriteGas(gas);
+    heroi->setSpriteLoud(loud);
+    
 
     Pessoa* p1 = new Pessoa(32, 60);
     Pessoa* p2 = new Pessoa(32, 110);

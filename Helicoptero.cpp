@@ -4,7 +4,7 @@
 
 using std::string;
 
-Helicoptero::Helicoptero() : path("./Sprites/helicoptero"), ObjetoDeJogo("./Sprites/helicoptero") , carga(0), tanque(100), pessoas(0), gas(nullptr), loud(nullptr) {
+Helicoptero::Helicoptero() : path("./Sprites/helicoptero"), ObjetoDeJogo("./Sprites/helicoptero") , carga(0), tanque(130), pessoas(0), gas(nullptr), loud(nullptr) {
     setPosX(6);
     setPosY(28);
     ativa();
@@ -17,22 +17,15 @@ void Helicoptero::draw() {
     objSprite->draw(Game::screen, x, y);
 
     drawGas();
-    drawLoad();
+    drawLoud();
 }
 
 void Helicoptero::drawGas() const {
-    string gasString = "";
-    int nGas = tanque/10;
-
-    for (int i = 0; i < nGas; i++) {
-        gasString[i] = '#';
-    }
-
-    //this->gas.copiaString(gasString);
+    this->gas->draw(Game::screen, 1, 20);
 }
 
-void Helicoptero::drawLoad() const {
-
+void Helicoptero::drawLoud() const {
+    this->loud->draw(Game::screen, 1, 76);
 }
 
 
@@ -49,4 +42,30 @@ void Helicoptero::update(string c) {
     } else if (c[0] == 'd' || c[0] == 'D') {
         moveTo(x, y+3);
     }
+
+    this->tanque -= 1;
+    updateGas();
+    updateLoud();
+}
+
+void Helicoptero::setSpriteGas(Sprite *g) {
+    this->gas = g;
+}
+
+void Helicoptero::setSpriteLoud(Sprite *l) {
+    this->loud = l;
+}
+
+void Helicoptero::updateGas() {
+    string s = "             ";
+    int valor = this->tanque/10;
+    for (int i = 0; i < valor ; i++) {
+        s[i] = '#';
+    }
+
+    gas->copiaString(s);
+}
+
+void Helicoptero::updateLoud() {
+    //
 }

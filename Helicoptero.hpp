@@ -15,6 +15,12 @@ public:
     virtual void update(string);
     virtual void draw();
 
+    void setSpriteGas(Sprite*);
+    void setSpriteLoud(Sprite*);
+
+    void updateGas();
+    void updateLoud();
+
 private:
     int carga;
     int tanque;
@@ -24,7 +30,7 @@ private:
     Sprite *loud;
 
     void drawGas() const;
-    void drawLoad() const;
+    void drawLoud() const;
 
 };
 
