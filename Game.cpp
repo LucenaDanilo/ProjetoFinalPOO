@@ -10,10 +10,13 @@ void Game::run() {
 
     Fase fase1;
     fase1.init();
+    fase1.draw();
+    fase1.show();
 
     while (true) {
-        fase1.draw();
         fase1.update();
+        fase1.draw();
+        fase1.show();
     }
     
 }

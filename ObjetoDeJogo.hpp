@@ -28,6 +28,9 @@ public:
     int getPosY() const;
     bool getAtivo() const;
 
+    virtual int getPeso() const = 0;
+    virtual void setPeso(int) = 0;
+
 protected:
     SpriteBase* objSprite;
 

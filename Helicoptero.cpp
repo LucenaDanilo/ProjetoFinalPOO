@@ -4,7 +4,7 @@
 
 using std::string;
 
-Helicoptero::Helicoptero() : path("./Sprites/helicoptero"), ObjetoDeJogo("./Sprites/helicoptero") , carga(0), tanque(130), pessoas(0), gas(nullptr), loud(nullptr) {
+Helicoptero::Helicoptero() : path("./Sprites/helicoptero"), ObjetoDeJogo("./Sprites/helicoptero") , carga(10), tanque(130), pessoas(0), gas(nullptr), loud(nullptr) {
     setPosX(6);
     setPosY(28);
     ativa();
@@ -76,5 +76,11 @@ void Helicoptero::updateGas() {
 }
 
 void Helicoptero::updateLoud() {
-    //
+    string s = "             ";
+    int valor = this->carga/10;
+    for (int i = 0; i < valor ; i++) {
+        s[i] = '#';
+    }
+
+    loud->copiaString(s);
 }

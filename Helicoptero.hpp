@@ -21,6 +21,9 @@ public:
     void updateGas();
     void updateLoud();
 
+    inline void setPeso(int c) { carga = c; }
+    inline int getPeso() const { return carga;}
+
 private:
     int carga;
     int tanque;
