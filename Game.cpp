@@ -10,9 +10,10 @@ void Game::run() {
 
     Fase fase1;
     fase1.init();
-    fase1.draw();
+
+    while (true) {
+        fase1.draw();
+        fase1.update();
+    }
     
-    // std::string s;
-    // getline(std::cin, s);
-    // system("clear");
 }

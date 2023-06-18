@@ -2,6 +2,7 @@
 #include "Game.hpp"
 #include "ObjetoDeJogo.hpp"
 #include "Helicoptero.hpp"
+#include "Pessoa.hpp"
 
 Fase::Fase() : GameBase() {
     //
@@ -15,14 +16,19 @@ void Fase::init() {
 
     // iniciando os objetos de jogo
     Helicoptero* heroi = new Helicoptero;
-    listObjJogo.push_back(heroi);
-}
+    Sprite* gas = new Sprite;
+    Sprite* loud = new Sprite;
 
-void Fase::update() {
-    // dar update no array de objetos de jogo
+    Pessoa* p1 = new Pessoa(32, 60);
+    Pessoa* p2 = new Pessoa(32, 110);
+    listObjJogo.push_back(heroi);
+    listObjJogo.push_back(p1);
+    listObjJogo.push_back(p2);
 }
 
 void Fase::draw() {
+    Game::screen.limpaScreen(Game::screenLimpa);
+
     // desenhando o background...
     background.draw(Game::screen, 7, 8);
     ilha1.draw(Game::screen, 24, 35);
@@ -35,6 +41,19 @@ void Fase::draw() {
     }
 
     Game::screen.show();
+    
+}
+
+void Fase::update() {
+    // dar update no array de objetos de jogo
+    std::string s;
+    getline(std::cin, s);
+    system("clear");
+
+    for (const auto&obj : listObjJogo) {
+        if (obj->getAtivo())
+            obj->update(s);
+    }
 }
 
 void Fase::show() {

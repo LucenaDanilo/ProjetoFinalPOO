@@ -12,9 +12,10 @@ public:
     static void run();
 
     static Sprite screen;
+    static Sprite screenLimpa;
 private:
     
-    static Sprite screenLimpa;
+    
 };
 
 #endif

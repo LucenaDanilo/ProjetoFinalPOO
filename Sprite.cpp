@@ -53,3 +53,19 @@ void Sprite::draw(Sprite& screen, int x, int y) const {
         countX++;
     }
 }
+
+void Sprite::update() {
+    //
+}
+
+void Sprite::limpaScreen(const Sprite &screenLimpa) {
+    int c = 0;
+
+    for (const auto &i : screenLimpa.vecString) {
+        this->vecString[c++] = i;
+    }
+}
+
+void Sprite::copiaString(const string &s) {
+    vecString[0] = s;
+}
