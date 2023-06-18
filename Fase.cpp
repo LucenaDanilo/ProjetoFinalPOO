@@ -5,10 +5,15 @@
 #include "Pessoa.hpp"
 #include <iostream>
 #include <list>
-#include <iterator>
 
 Fase::Fase() : GameBase(), resgatados(0) {
     //
+}
+
+Fase::~Fase() {
+    for (const auto&obj : listObjJogo) {
+        delete [] obj;
+    }
 }
 
 void Fase::init() {
@@ -42,28 +47,9 @@ void Fase::initObjetosJogo() {
     }   
 }
 
-void Fase::draw() {
+void Fase::draw() const {
     drawBackground();
     drawObjetosJogo();
-}
-
-void Fase::update() {
-    // dar update no array de objetos de jogo
-    
-    std::string entrada;
-    getline(std::cin, entrada);
-    system("clear");
-    
-    updateObjetosJogo(entrada);
-    updateColisao();
-}
-
-void Fase::show() {
-   Game::screen.show();
-}
-
-void Fase::setObjetoJogo(ObjetoDeJogo* obj) {
-    listObjJogo.push_front(obj);
 }
 
 void Fase::drawBackground() const {
@@ -81,6 +67,17 @@ void Fase::drawObjetosJogo() const {
         if (obj->getAtivo())
             obj->draw();
     }  
+}
+
+void Fase::update() {
+    // dar update no array de objetos de jogo
+    
+    std::string entrada;
+    getline(std::cin, entrada);
+    system("clear");
+    
+    updateColisao();
+    updateObjetosJogo(entrada);
 }
 
 void Fase::updateColisao() const {
@@ -101,3 +98,12 @@ void Fase::updateObjetosJogo(std::string entrada) const {
             obj->update(entrada);
     }
 }
+
+void Fase::show() {
+   Game::screen.show();
+}
+
+void Fase::setObjetoJogo(ObjetoDeJogo* obj) {
+    listObjJogo.push_front(obj);
+}
+
