@@ -3,6 +3,9 @@
 #include "ObjetoDeJogo.hpp"
 #include "Helicoptero.hpp"
 #include "Pessoa.hpp"
+#include <iostream>
+#include <list>
+#include <iterator>
 
 Fase::Fase() : GameBase() {
     //
@@ -16,19 +19,17 @@ void Fase::init() {
 
     // iniciando os objetos de jogo
     Helicoptero* heroi = new Helicoptero;
-    Sprite* gas = new Sprite;
-    Sprite* loud = new Sprite;
-    gas->setPath("./Sprites/tanque");
-    loud->setPath("./Sprites/carga");
-    heroi->setSpriteGas(gas);
-    heroi->setSpriteLoud(loud);
+    heroi->init();
     
-
     Pessoa* p1 = new Pessoa(32, 60);
     Pessoa* p2 = new Pessoa(32, 110);
-    listObjJogo.push_back(heroi);
-    listObjJogo.push_back(p1);
-    listObjJogo.push_back(p2);
+
+    ObjetoDeJogo *objs[] = {heroi, new Pessoa(32, 60), 
+        new Pessoa(32, 110)};
+
+    for (int i = 0; i < 3; i++) {
+        listObjJogo.push_back(objs[i]);
+    }
 }
 
 void Fase::draw() {
@@ -58,6 +59,16 @@ void Fase::update() {
     for (const auto&obj : listObjJogo) {
         if (obj->getAtivo())
             obj->update(s);
+    }
+
+    auto heroi = listObjJogo.front();
+
+    for (const auto&obj : listObjJogo) {
+        if (obj != heroi)
+            if (heroi->colideCom(*obj) && obj->getAtivo()) {
+                std::cout << "bati ein";
+                obj->desativa();
+            }        
     }
 }
 

@@ -24,8 +24,11 @@ public:
     void limpaScreen(const Sprite&);
 
     virtual void setPath( string );
-    void setH() const {}
-    void setW() const {}
+    void setH() {}
+    void setW() {}
+
+    virtual inline int getH() const { return h; }
+    virtual inline int getW() const { return w; }
 
     void copiaString(const string&);
 

@@ -21,6 +21,9 @@ public:
     virtual void show() const = 0;
     virtual void setPath( string ) = 0;
 
+    virtual inline int getH() const = 0;
+    virtual inline int getW() const = 0;
+
 protected:
     string path;
 };

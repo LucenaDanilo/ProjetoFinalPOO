@@ -10,6 +10,15 @@ Helicoptero::Helicoptero() : path("./Sprites/helicoptero"), ObjetoDeJogo("./Spri
     ativa();
 }
 
+void Helicoptero::init() {
+    Sprite* gas = new Sprite;
+    Sprite* loud = new Sprite;
+    gas->setPath("./Sprites/tanque");
+    loud->setPath("./Sprites/carga");
+    this->setSpriteGas(gas);
+    this->setSpriteLoud(loud);
+}
+
 void Helicoptero::draw() {
     int x = getPosX();
     int y = getPosY();

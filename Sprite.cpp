@@ -14,6 +14,7 @@ Sprite::Sprite( string path ) : SpriteBase(path) , w(0), h(0) {
 
 void Sprite::setPath( string p ) {
     path = p;
+    int max = 0;
 
     ifstream file(path);
 
@@ -21,6 +22,9 @@ void Sprite::setPath( string p ) {
         string line;
         while (getline(file, line)) {
             h++;
+            if (line.length() > max) {
+                max = line.length();
+            }
             vecString.push_back(line);
         }
         file.close();
@@ -28,6 +32,7 @@ void Sprite::setPath( string p ) {
     else {
         cout << "Erro ao abrir o arquivo: " << path << endl;
     }
+    w = max + 1;
 }
 
 void Sprite::show() const {

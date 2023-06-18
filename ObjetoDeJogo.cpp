@@ -5,9 +5,29 @@ ObjetoDeJogo::ObjetoDeJogo(const string& s) : GameBase(), objSprite(nullptr), x(
     setSprite(s);
 }
 
-bool ObjetoDeJogo::colideCom(const ObjetoDeJogo&) const {
-    //
-    return true;
+bool ObjetoDeJogo::colideCom(const ObjetoDeJogo &obj) const {
+    int x1, y1, h1, w1;
+    int x2, y2, h2, w2;
+
+    x1 = this->getPosX();
+    y1 = this->getPosY();
+    h1 = this->objSprite->getH();
+    w1 = this->objSprite->getW();
+
+    x2 = obj.getPosX();
+    y2 = obj.getPosY();
+    h2 = obj.objSprite->getH();
+    w2 = obj.objSprite->getW();
+
+    //std::cout << "x1: " << x1 << " | h1: " << h1 << " | x2: " << x2;
+    if ((x1 + h1 >= x2) && (x1 <= x2)) {
+        //std::cout << "primeiro!";
+        if ((y1 + w1 > y2) && (y1 < y2)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 void ObjetoDeJogo::ativa() { 

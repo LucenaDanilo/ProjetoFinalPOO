@@ -10,7 +10,7 @@ class Helicoptero : public ObjetoDeJogo {
 public:
     Helicoptero();
 
-    virtual void init() {}
+    virtual void init();
     virtual void update() {}
     virtual void update(string);
     virtual void draw();
