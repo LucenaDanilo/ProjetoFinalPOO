@@ -4,13 +4,25 @@
 
 using std::string;
 
-Helicoptero::Helicoptero() : path("./Sprites/helicoptero"), ObjetoDeJogo("./Sprites/helicoptero") , carga(10), tanque(130), pessoas(0), gas(nullptr), loud(nullptr) {
+Helicoptero::Helicoptero() : path("./Sprites/SpritesHeli/helicoptero1"), ObjetoDeJogo("./Sprites/SpritesHeli/helicoptero1") , 
+    carga(10), tanque(130), pessoas(0), gas(nullptr), loud(nullptr), contSprite(1) {
     setPosX(6);
     setPosY(28);
     ativa();
 }
 
 void Helicoptero::init() {
+    // Init no array de sprites
+    string paths[] = {"./Sprites/SpritesHeli/helicoptero1, ./Sprites/SpritesHeli/helicoptero2" 
+    "./Sprites/SpritesHeli/helicoptero3"};
+
+    for (const auto&path: paths) {
+        //Sprite *s = new Sprite;
+    }
+
+
+
+    // Init no display do Gas e loud
     Sprite* gas = new Sprite;
     Sprite* loud = new Sprite;
     gas->setPath("./Sprites/tanque");
@@ -37,8 +49,24 @@ void Helicoptero::drawLoud() const {
     this->loud->draw(Game::screen, 1, 76);
 }
 
+void Helicoptero::update(string entrada) {
+    updatePos(entrada);
+    updateSprite();
+    updateGas();
+    updateLoud();
+}
 
-void Helicoptero::update(string c) {
+void Helicoptero::updateSprite() {
+    // JAJA EU VOLTO
+    string path = "./Sprites/SpritesHeli/helicoptero3";
+
+    char caractere = static_cast<char>(contSprite);
+    path[35] = 2;
+
+    this->setSprite(path);
+}
+
+void Helicoptero::updatePos(string c) {
     int x = getPosX();
     int y = getPosY();
 
@@ -51,21 +79,10 @@ void Helicoptero::update(string c) {
     } else if (c[0] == 'd' || c[0] == 'D') {
         moveTo(x, y+3);
     }
-
-    this->tanque -= 1;
-    updateGas();
-    updateLoud();
-}
-
-void Helicoptero::setSpriteGas(Sprite *g) {
-    this->gas = g;
-}
-
-void Helicoptero::setSpriteLoud(Sprite *l) {
-    this->loud = l;
 }
 
 void Helicoptero::updateGas() {
+    this->tanque -= 1;
     string s = "             ";
     int valor = this->tanque/10;
     for (int i = 0; i < valor ; i++) {
@@ -84,3 +101,12 @@ void Helicoptero::updateLoud() {
 
     loud->copiaString(s);
 }
+
+void Helicoptero::setSpriteGas(Sprite *g) {
+    this->gas = g;
+}
+
+void Helicoptero::setSpriteLoud(Sprite *l) {
+    this->loud = l;
+}
+

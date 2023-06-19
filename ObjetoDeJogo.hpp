@@ -31,6 +31,9 @@ public:
     virtual int getPeso() const = 0;
     virtual void setPeso(int) = 0;
 
+    virtual void setTanque(int t) = 0;
+    virtual int getTanque() const = 0;
+    
 protected:
     SpriteBase* objSprite;
 

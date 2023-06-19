@@ -106,14 +106,16 @@ void Fase::show() {
 
 bool Fase::verificaFim() const {
     if (verificaVitoria()) {
-        vitoria.draw(Game::screen, 17, 50);
+        vitoria.draw(Game::screen, 18, 50);
         system("clear");
         Game::screen.show();
         return true;
     }
 
     if (verificaDerrota()) {
-        //
+        derrota.draw(Game::screen, 18, 45);
+        system("clear");
+        Game::screen.show();
         return true;
     }
     return false;
@@ -125,7 +127,6 @@ bool Fase::verificaVitoria() const {
     if (heroi->getPosX() >= 26 && heroi->getPosX() <= 33) {
         if (heroi->getPosY() <= 10 && heroi->getPosY() >= 4) {
             if (heroi->getPeso() >= 120) {
-                std::cout<< "ganhou!";
                 return true;
             }
         }
@@ -135,6 +136,12 @@ bool Fase::verificaVitoria() const {
 }
 
 bool Fase::verificaDerrota() const {
+    auto heroi = this->listObjJogo.front();
+
+    if (heroi->getTanque() < 1) {
+        return true;
+    }
+
     return false;
 }
 

@@ -18,19 +18,22 @@ public:
     void setSpriteGas(Sprite*);
     void setSpriteLoud(Sprite*);
 
+    void updateSprite();
+    void updatePos(string);
     void updateGas();
     void updateLoud();
 
     inline void setPeso(int c) { carga = c; }
-    inline int getPeso() const { return carga;}
+    inline int getPeso() const { return carga; }
+
+    inline void setTanque(int t) { tanque = t; }
+    inline int getTanque() const { return tanque; }
 
 private:
-    int carga;
-    int tanque;
-    int pessoas;
+    int carga, tanque;
+    int pessoas, contSprite;
     string path;
-    Sprite *gas;
-    Sprite *loud;
+    Sprite *gas, *loud;
 
     void drawGas() const;
     void drawLoud() const;

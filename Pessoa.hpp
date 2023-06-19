@@ -15,6 +15,9 @@ public:
     virtual int getPeso() const { return peso;}
     virtual void setPeso(int p) {peso = p;}
 
+    virtual void setTanque(int t) {}
+    virtual int getTanque() const { return 1; }
+
 private:
     int peso;
 
