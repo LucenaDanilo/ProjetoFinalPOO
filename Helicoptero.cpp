@@ -5,7 +5,7 @@
 using std::string;
 
 Helicoptero::Helicoptero() : path("./Sprites/SpritesHeli/helicoptero1"), ObjetoDeJogo("./Sprites/SpritesHeli/helicoptero1") , 
-    carga(10), tanque(130), pessoas(0), gas(nullptr), loud(nullptr), contSprite(1) {
+    carga(10), tanque(130), pessoas(0), gas(nullptr), loud(nullptr), contSprite(0) {
     setPosX(6);
     setPosY(28);
     ativa();
@@ -13,14 +13,14 @@ Helicoptero::Helicoptero() : path("./Sprites/SpritesHeli/helicoptero1"), ObjetoD
 
 void Helicoptero::init() {
     // Init no array de sprites
-    string paths[] = {"./Sprites/SpritesHeli/helicoptero1, ./Sprites/SpritesHeli/helicoptero2" 
-    "./Sprites/SpritesHeli/helicoptero3"};
+    string paths[] = {"./Sprites/SpritesHeli/helicoptero1", "./Sprites/SpritesHeli/helicoptero2" ,
+    "./Sprites/SpritesHeli/helicoptero3", "./Sprites/SpritesHeli/helicoptero4", "./Sprites/SpritesHeli/helicoptero5" ,
+    "./Sprites/SpritesHeli/helicoptero6", "./Sprites/SpritesHeli/helicoptero7", "./Sprites/SpritesHeli/helicoptero8"};
 
     for (const auto&path: paths) {
-        //Sprite *s = new Sprite;
+        Sprite *s = new Sprite(path);
+        spriteHelis.push_back(s);
     }
-
-
 
     // Init no display do Gas e loud
     Sprite* gas = new Sprite;
@@ -35,7 +35,7 @@ void Helicoptero::draw() const {
     int x = getPosX();
     int y = getPosY();
 
-    objSprite->draw(Game::screen, x, y);
+    spriteHelis[contSprite]->draw(Game::screen, x, y);
 
     drawGas();
     drawLoud();
@@ -54,6 +54,11 @@ void Helicoptero::update(string entrada) {
     updateSprite();
     updateGas();
     updateLoud();
+
+    contSprite++;
+    if (contSprite > 7) {
+        contSprite = 0;
+    }
 }
 
 void Helicoptero::updateSprite() {

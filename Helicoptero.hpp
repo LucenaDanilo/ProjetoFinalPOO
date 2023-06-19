@@ -3,6 +3,7 @@
 
 #include "ObjetoDeJogo.hpp"
 #include "Sprite.hpp"
+#include <vector>
 
 using std::string;
 
@@ -34,6 +35,7 @@ private:
     int pessoas, contSprite;
     string path;
     Sprite *gas, *loud;
+    vector<Sprite*> spriteHelis;
 
     void drawGas() const;
     void drawLoud() const;
