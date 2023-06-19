@@ -30,11 +30,15 @@ public:
     void updateColisao() const;
     void updateObjetosJogo(string) const;
 
+    bool verificaFim() const;
+    bool verificaVitoria() const;
+    bool verificaDerrota() const;
+
     void setObjetoJogo(ObjetoDeJogo*);
 
 private:
     Sprite background;
-    Sprite ilha1, ilha2;
+    Sprite ilha1, ilha2, vitoria, derrota;
     list<ObjetoDeJogo*> listObjJogo;
     int resgatados;
 

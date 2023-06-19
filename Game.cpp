@@ -17,6 +17,10 @@ void Game::run() {
         fase1.update();
         fase1.draw();
         fase1.show();
+
+        if (fase1.verificaFim()) {
+            break;
+        }
     }
     
 }

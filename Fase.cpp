@@ -6,13 +6,14 @@
 #include <iostream>
 #include <list>
 
-Fase::Fase() : GameBase(), resgatados(0) {
+Fase::Fase() : GameBase(), resgatados(0), 
+    vitoria("./Sprites/Msgs/vitoria.txt"), derrota("./Sprites/Msgs/derrota.txt") {
     //
 }
 
 Fase::~Fase() {
     for (const auto&obj : listObjJogo) {
-        delete [] obj;
+        delete obj;
     }
 }
 
@@ -101,6 +102,40 @@ void Fase::updateObjetosJogo(std::string entrada) const {
 
 void Fase::show() {
    Game::screen.show();
+}
+
+bool Fase::verificaFim() const {
+    if (verificaVitoria()) {
+        vitoria.draw(Game::screen, 17, 50);
+        system("clear");
+        Game::screen.show();
+        return true;
+    }
+
+    if (verificaDerrota()) {
+        //
+        return true;
+    }
+    return false;
+}
+
+bool Fase::verificaVitoria() const {
+    auto heroi = this->listObjJogo.front();
+
+    if (heroi->getPosX() >= 26 && heroi->getPosX() <= 33) {
+        if (heroi->getPosY() <= 10 && heroi->getPosY() >= 4) {
+            if (heroi->getPeso() >= 120) {
+                std::cout<< "ganhou!";
+                return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool Fase::verificaDerrota() const {
+    return false;
 }
 
 void Fase::setObjetoJogo(ObjetoDeJogo* obj) {
