@@ -6,7 +6,7 @@
 #include <iostream>
 #include <list>
 
-Fase::Fase() : GameBase(), resgatados(0), 
+Fase::Fase() : GameBase(), resgatados(0), sprResgatados("./Sprites/resgatados") ,
     vitoria("./Sprites/Msgs/vitoria.txt"), derrota("./Sprites/Msgs/derrota.txt") {
     //
 }
@@ -57,6 +57,7 @@ void Fase::drawBackground() const {
     background.draw(Game::screen, 7, 8);
     ilha1.draw(Game::screen, 24, 35);
     ilha2.draw(Game::screen, 24, 85);
+    sprResgatados.draw(Game::screen, 1, 147);
 }
 
 void Fase::drawObjetosJogo() const {
@@ -76,6 +77,7 @@ void Fase::update() {
     
     updateColisao();
     updateObjetosJogo(entrada);
+    incrementaResgatados();
 }
 
 void Fase::updateColisao() const {
@@ -85,6 +87,8 @@ void Fase::updateColisao() const {
         if (obj != heroi)
             if (heroi->colideCom(*obj) && obj->getAtivo()) {
                 heroi->setPeso(heroi->getPeso() + obj->getPeso());
+                heroi->incrementaPessoas(1);
+                std::cout << "nPessoas: " << heroi->getPessoas();
                 obj->desativa();
             }        
     }
@@ -101,7 +105,38 @@ void Fase::show() {
    Game::screen.show();
 }
 
-bool Fase::verificaFim() const {
+bool Fase::verificaColisaoRescueBase() const {
+    auto heroi = this->listObjJogo.front();
+
+    if (heroi->getPosX() >= 26 && heroi->getPosX() <= 33) {
+        if (heroi->getPosY() <= 10 && heroi->getPosY() >= 4) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool Fase::verificaResgate() const {
+    auto heroi = this->listObjJogo.front();
+
+    if (verificaColisaoRescueBase() and heroi->getPessoas() != 0) {
+        return true;
+    }
+    return false;
+}
+
+void Fase::incrementaResgatados() {
+    auto heroi = this->listObjJogo.front();
+    int pessoas = heroi->getPessoas();
+
+    if (verificaResgate()) {
+        resgatados += pessoas;
+        heroi->incrementaPessoas(-pessoas);
+        heroi->setPeso(heroi->getPeso() - 55 * pessoas);
+    }
+}
+
+bool Fase::verificaFim() {
     if (verificaVitoria()) {
         vitoria.draw(Game::screen, 18, 50);
         system("clear");
@@ -121,14 +156,11 @@ bool Fase::verificaFim() const {
 bool Fase::verificaVitoria() const {
     auto heroi = this->listObjJogo.front();
 
-    if (heroi->getPosX() >= 26 && heroi->getPosX() <= 33) {
-        if (heroi->getPosY() <= 10 && heroi->getPosY() >= 4) {
-            if (heroi->getPeso() >= 120) {
-                return true;
-            }
+    if(verificaColisaoRescueBase()) {
+        if (getResgatados() == 2) {
+            return true;
         }
     }
-
     return false;
 }
 

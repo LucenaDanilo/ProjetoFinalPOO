@@ -41,13 +41,6 @@ void Sprite::show() const {
     }
 }
 
-// Sprite::Sprite( const Sprite &alvo ) : SpriteBase(path) , w(0), h(0) {
-//     int c = 0;
-//     for (const string& line : this->vecString) {
-//         alvo.vecString[c++] = line;
-//     }
-// }
-
 void Sprite::draw(Sprite& screen, int x, int y) const {
     int countX = 0, countY = 0;
     for (const string& line : this->vecString) {

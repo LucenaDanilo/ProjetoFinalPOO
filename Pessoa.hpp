@@ -18,6 +18,9 @@ public:
     virtual void setTanque(int t) {}
     virtual int getTanque() const { return 1; }
 
+    virtual inline void incrementaPessoas(int x) {}
+    virtual inline int getPessoas() {return 0;}
+
 private:
     int peso;
 

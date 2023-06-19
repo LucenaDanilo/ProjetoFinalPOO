@@ -29,6 +29,9 @@ public:
     inline void setTanque(int t) { tanque = t; }
     inline int getTanque() const { return tanque; }
 
+    virtual inline void incrementaPessoas(int x) { pessoas += x; }
+    virtual inline int getPessoas() { return pessoas; }
+
 private:
     int carga, tanque;
     int pessoas;

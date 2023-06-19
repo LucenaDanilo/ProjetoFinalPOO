@@ -19,8 +19,10 @@ public:
     virtual int getPeso() const = 0;
     virtual void setPeso(int) = 0;
 
-    virtual void setTanque(int t) = 0;
+    virtual void setTanque( int ) = 0;
     virtual int getTanque() const = 0;
+    virtual inline void incrementaPessoas( int ) = 0;
+    virtual inline int getPessoas() = 0;
 
     bool colideCom(const ObjetoDeJogo&) const;
     void moveTo(int, int);
