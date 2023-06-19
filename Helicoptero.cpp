@@ -4,8 +4,8 @@
 
 using std::string;
 
-Helicoptero::Helicoptero() : path("./Sprites/SpritesHeli/helicoptero1"), ObjetoDeJogo("./Sprites/SpritesHeli/helicoptero1") , 
-    carga(10), tanque(130), pessoas(0), gas(nullptr), loud(nullptr), contSprite(0) {
+Helicoptero::Helicoptero() : ObjetoDeJogo("./Sprites/SpritesHeli/helicoptero1") , 
+    carga(10), tanque(130), pessoas(0), gas(nullptr), loud(nullptr) {
     setPosX(6);
     setPosY(28);
     ativa();
@@ -17,10 +17,13 @@ void Helicoptero::init() {
     "./Sprites/SpritesHeli/helicoptero3", "./Sprites/SpritesHeli/helicoptero4", "./Sprites/SpritesHeli/helicoptero5" ,
     "./Sprites/SpritesHeli/helicoptero6", "./Sprites/SpritesHeli/helicoptero7", "./Sprites/SpritesHeli/helicoptero8"};
 
+    int cont = 0;
     for (const auto&path: paths) {
-        Sprite *s = new Sprite(path);
-        spriteHelis.push_back(s);
+        insereSprite(path);
+        cont++;
     }
+
+    setNSprites(cont);
 
     // Init no display do Gas e loud
     Sprite* gas = new Sprite;
@@ -35,7 +38,7 @@ void Helicoptero::draw() const {
     int x = getPosX();
     int y = getPosY();
 
-    spriteHelis[contSprite]->draw(Game::screen, x, y);
+    getSprite()->draw(Game::screen, x, y);
 
     drawGas();
     drawLoud();
@@ -53,36 +56,32 @@ void Helicoptero::update(string entrada) {
     updatePos(entrada);
     updateSprite();
     updateGas();
-    updateLoud();
-
-    contSprite++;
-    if (contSprite > 7) {
-        contSprite = 0;
-    }
-}
-
-void Helicoptero::updateSprite() {
-    // JAJA EU VOLTO
-    string path = "./Sprites/SpritesHeli/helicoptero3";
-
-    char caractere = static_cast<char>(contSprite);
-    path[35] = 2;
-
-    this->setSprite(path);
+    updateLoud();   
 }
 
 void Helicoptero::updatePos(string c) {
     int x = getPosX();
     int y = getPosY();
+    int h = getSprite()->getH();
+    int w = getSprite()->getW();
 
     if (c[0] == 'w' | c[0] == 'W') {
-        moveTo(x-1, y);
+        if (x > 3) {
+            moveTo(x-1, y);
+        }
     } else if (c[0] == 's' || c[0] == 'S') {
-        moveTo(x+1, y);
+        if (x + h < 39) {
+            moveTo(x+1, y);
+        }
     } else if (c[0] == 'a' || c[0] == 'A') {
-        moveTo(x, y-3);
+        if (y > 2) {
+            moveTo(x, y-3);
+        }
+        
     } else if (c[0] == 'd' || c[0] == 'D') {
-        moveTo(x, y+3);
+        if (y + w < 157) {
+            moveTo(x, y+3);
+        }   
     }
 }
 

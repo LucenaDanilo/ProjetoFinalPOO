@@ -19,7 +19,6 @@ public:
     void setSpriteGas(Sprite*);
     void setSpriteLoud(Sprite*);
 
-    void updateSprite();
     void updatePos(string);
     void updateGas();
     void updateLoud();
@@ -32,10 +31,8 @@ public:
 
 private:
     int carga, tanque;
-    int pessoas, contSprite;
-    string path;
+    int pessoas;
     Sprite *gas, *loud;
-    vector<Sprite*> spriteHelis;
 
     void drawGas() const;
     void drawLoud() const;

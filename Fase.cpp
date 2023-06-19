@@ -34,17 +34,14 @@ void Fase::initBackgroud() {
 
 void Fase::initObjetosJogo() {
      // iniciando os objetos de jogo
-    Helicoptero* heroi = new Helicoptero;
-    heroi->init();
-    
-    Pessoa* p1 = new Pessoa(32, 60);
-    Pessoa* p2 = new Pessoa(32, 110);
+    Helicoptero* heroi = new Helicoptero;    
 
     ObjetoDeJogo *objs[] = {heroi, new Pessoa(32, 60), 
         new Pessoa(32, 110)};
 
     for (int i = 0; i < 3; i++) {
         listObjJogo.push_back(objs[i]);
+        objs[i]->init();
     }   
 }
 

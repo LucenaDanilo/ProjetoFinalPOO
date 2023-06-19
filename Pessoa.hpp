@@ -7,9 +7,9 @@ class Pessoa : public ObjetoDeJogo {
 public:
     Pessoa(int, int);
 
-    virtual void init() {}
+    virtual void init();
     virtual void update() {}
-    virtual void update(string) {}
+    virtual void update(string);
     virtual void draw() const ;
 
     virtual int getPeso() const { return peso;}

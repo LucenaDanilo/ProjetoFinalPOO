@@ -3,6 +3,7 @@
 
 #include "SpriteBase.hpp"
 #include "GameBase.hpp"
+#include "vector"
 
 using std::string;
 
@@ -15,24 +16,31 @@ public:
     virtual void update(string) = 0;
     virtual void draw() const = 0;
 
-    bool colideCom(const ObjetoDeJogo&) const;
-    void moveTo(int, int);
-    void ativa();
-    void desativa();
-
-    void setPosX(int);
-    void setPosY(int);
-    void setSprite(const string&);
-
-    int getPosX() const;
-    int getPosY() const;
-    bool getAtivo() const;
-
     virtual int getPeso() const = 0;
     virtual void setPeso(int) = 0;
 
     virtual void setTanque(int t) = 0;
     virtual int getTanque() const = 0;
+
+    bool colideCom(const ObjetoDeJogo&) const;
+    void moveTo(int, int);
+    void ativa();
+    void desativa();
+    void updateSprite();
+
+    void setPosX(int);
+    void setPosY(int);
+    void setSprite(const string&);
+    void setNSprites(int n) {nSprites = n;}
+
+    int getPosX() const;
+    int getPosY() const;
+    bool getAtivo() const;
+    int getIndSprite() const;
+    int getNSprites() const;
+
+    void insereSprite(std::string);
+    inline Sprite* getSprite() const { return spritesObj[indSprite]; }
     
 protected:
     SpriteBase* objSprite;
@@ -40,6 +48,8 @@ protected:
 private:
     int x, y;
     bool ativo;
+    std::vector<Sprite*> spritesObj;
+    int indSprite, nSprites;
 };
 
 #endif

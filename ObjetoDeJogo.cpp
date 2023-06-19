@@ -1,7 +1,8 @@
 #include "ObjetoDeJogo.hpp"
 #include "Sprite.hpp"
 
-ObjetoDeJogo::ObjetoDeJogo(const string& s) : GameBase(), objSprite(nullptr), x(0), y(0), ativo(false) {
+ObjetoDeJogo::ObjetoDeJogo(const string& s) : GameBase(), objSprite(nullptr)
+    , x(0), y(0), ativo(false), indSprite(0) {
     setSprite(s);
 }
 
@@ -28,6 +29,13 @@ bool ObjetoDeJogo::colideCom(const ObjetoDeJogo &obj) const {
     }
 
     return false;
+}
+
+void ObjetoDeJogo::updateSprite() {
+    indSprite++;
+    if (indSprite > nSprites - 1) {
+        indSprite = 0;
+    }
 }
 
 void ObjetoDeJogo::ativa() { 
@@ -64,7 +72,20 @@ bool ObjetoDeJogo::getAtivo() const {
     return ativo;
 }
 
+int ObjetoDeJogo::getIndSprite() const {
+    return indSprite;
+}
+
+int ObjetoDeJogo::getNSprites() const {
+    return nSprites;    
+}
+
 void ObjetoDeJogo::moveTo(int x, int y) {
     setPosX(x);
     setPosY(y);
+}
+
+void ObjetoDeJogo::insereSprite(std::string path) {
+    Sprite *s = new Sprite(path);
+    this->spritesObj.push_back(s);
 }
