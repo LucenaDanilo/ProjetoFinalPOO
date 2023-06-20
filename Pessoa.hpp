@@ -10,6 +10,7 @@ public:
     virtual void init();
     virtual void update() {}
     virtual void update(string);
+    virtual void updateVitoria() {}
     virtual void draw() const ;
 
     virtual int getPeso() const { return peso;}

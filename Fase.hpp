@@ -46,6 +46,9 @@ private:
     bool verificaResgate() const;
     bool verificaVitoria() const;
     bool verificaDerrota() const;
+
+    void telaVitoria();
+    void telaDerrota();
 };
 
 #endif

@@ -52,6 +52,12 @@ void Helicoptero::drawLoud() const {
     this->loud->draw(Game::screen, 1, 76);
 }
 
+void Helicoptero::updateVitoria() {
+    updateSprite();
+    updateGas();
+    updateLoud();  
+}
+
 void Helicoptero::update(string entrada) {
     updatePos(entrada);
     updateSprite();

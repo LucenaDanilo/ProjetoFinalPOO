@@ -88,7 +88,6 @@ void Fase::updateColisao() const {
             if (heroi->colideCom(*obj) && obj->getAtivo()) {
                 heroi->setPeso(heroi->getPeso() + obj->getPeso());
                 heroi->incrementaPessoas(1);
-                std::cout << "nPessoas: " << heroi->getPessoas();
                 obj->desativa();
             }        
     }
@@ -128,33 +127,28 @@ bool Fase::verificaResgate() const {
 void Fase::incrementaResgatados() {
     auto heroi = this->listObjJogo.front();
     int pessoas = heroi->getPessoas();
-    std::string stringPessoas = std::to_string(pessoas);
-
 
     if (verificaResgate()) {
         // adiciona a pessoa em resgatados e tira do helicoptero
         resgatados += pessoas;
+        std::string stringResgatados = std::to_string(resgatados);
         heroi->incrementaPessoas(-pessoas);
         heroi->setPeso(heroi->getPeso() - 55 * pessoas);
 
         //transforma o display no número de pessoas resgatadas
-        sprResgatados.copiaString(stringPessoas);
-        //sprResgatados.draw(Game::screen, )
+        sprResgatados.copiaString(stringResgatados);
     }
 }
 
 bool Fase::verificaFim() {
+
     if (verificaVitoria()) {
-        vitoria.draw(Game::screen, 18, 50);
-        system("clear");
-        Game::screen.show();
+        telaVitoria();
         return true;
     }
 
     if (verificaDerrota()) {
-        derrota.draw(Game::screen, 18, 45);
-        system("clear");
-        Game::screen.show();
+        telaDerrota();
         return true;
     }
     return false;
@@ -179,6 +173,22 @@ bool Fase::verificaDerrota() const {
     }
 
     return false;
+}
+
+void Fase::telaVitoria() {
+    auto heroi = this->listObjJogo.front();
+    
+    heroi->updateVitoria();
+    heroi->draw();
+    vitoria.draw(Game::screen, 18, 50);
+    system("clear");
+    Game::screen.show();
+}
+
+void Fase::telaDerrota() {
+    derrota.draw(Game::screen, 18, 45);
+    system("clear");
+    Game::screen.show();
 }
 
 void Fase::setObjetoJogo(ObjetoDeJogo* obj) {

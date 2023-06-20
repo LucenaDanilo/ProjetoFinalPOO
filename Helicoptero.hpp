@@ -13,6 +13,7 @@ public:
 
     virtual void init();
     virtual void update() {}
+    virtual void updateVitoria();
     virtual void update(string);
     virtual void draw() const;
 
