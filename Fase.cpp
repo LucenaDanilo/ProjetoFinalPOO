@@ -37,9 +37,9 @@ void Fase::initObjetosJogo() {
     Helicoptero* heroi = new Helicoptero;    
 
     ObjetoDeJogo *objs[] = {heroi, new Pessoa(32, 60), 
-        new Pessoa(32, 110)};
+        new Pessoa(32, 110), new Pessoa(32, 54), new Pessoa(32, 63), new Pessoa(32, 116)};
 
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 6; i++) {
         listObjJogo.push_back(objs[i]);
         objs[i]->init();
     }   
@@ -84,12 +84,15 @@ void Fase::updateColisao() const {
     auto heroi = listObjJogo.front();
 
     for (const auto&obj : listObjJogo) {
-        if (obj != heroi)
-            if (heroi->colideCom(*obj) && obj->getAtivo()) {
-                heroi->setPeso(heroi->getPeso() + obj->getPeso());
-                heroi->incrementaPessoas(1);
-                obj->desativa();
-            }        
+        if (obj != heroi) {
+            if (heroi->getPessoas() < 4) {
+                if (heroi->colideCom(*obj) && obj->getAtivo()) {
+                    heroi->setPeso(heroi->getPeso() + obj->getPeso());
+                    heroi->incrementaPessoas(1);
+                    obj->desativa();
+                }        
+            }
+        }
     }
 }
 
@@ -133,7 +136,7 @@ void Fase::incrementaResgatados() {
         resgatados += pessoas;
         std::string stringResgatados = std::to_string(resgatados);
         heroi->incrementaPessoas(-pessoas);
-        heroi->setPeso(heroi->getPeso() - 55 * pessoas);
+        heroi->setPeso(heroi->getPeso() - 68 * pessoas);
 
         //transforma o display no número de pessoas resgatadas
         sprResgatados.copiaString(stringResgatados);
@@ -158,7 +161,7 @@ bool Fase::verificaVitoria() const {
     auto heroi = this->listObjJogo.front();
 
     if(verificaColisaoRescueBase()) {
-        if (getResgatados() == 2) {
+        if (getResgatados() == 5) {
             return true;
         }
     }

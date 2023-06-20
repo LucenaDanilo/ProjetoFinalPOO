@@ -2,7 +2,7 @@
 #include "ObjetoDeJogo.hpp"
 #include "Game.hpp"
 
-Pessoa::Pessoa(int x, int y) : ObjetoDeJogo("./Sprites/SpritesPessoa/pessoa") , peso(55) {
+Pessoa::Pessoa(int x, int y) : ObjetoDeJogo("./Sprites/SpritesPessoa/pessoa") , peso(68) {
     setPosX(x);
     setPosY(y);
     ativa();

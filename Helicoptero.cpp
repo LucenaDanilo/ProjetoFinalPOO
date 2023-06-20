@@ -5,7 +5,7 @@
 using std::string;
 
 Helicoptero::Helicoptero() : ObjetoDeJogo("./Sprites/SpritesHeli/helicoptero1") , 
-    carga(10), tanque(130), pessoas(0), gas(nullptr), loud(nullptr) {
+    carga(22), tanque(300), pessoas(0), gas(nullptr), loud(nullptr) {
     setPosX(6);
     setPosY(28);
     ativa();
@@ -94,7 +94,7 @@ void Helicoptero::updatePos(string c) {
 void Helicoptero::updateGas() {
     this->tanque -= 1;
     string s = "             ";
-    int valor = this->tanque/10;
+    int valor = this->tanque/22;
     for (int i = 0; i < valor ; i++) {
         s[i] = '#';
     }
@@ -104,7 +104,7 @@ void Helicoptero::updateGas() {
 
 void Helicoptero::updateLoud() {
     string s = "             ";
-    int valor = this->carga/10;
+    int valor = this->carga/22;
     for (int i = 0; i < valor ; i++) {
         s[i] = '#';
     }
