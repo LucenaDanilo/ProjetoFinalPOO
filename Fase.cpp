@@ -8,7 +8,8 @@
 #include <list>
 
 Fase::Fase() : GameBase(), resgatados(0), sprResgatados("./Sprites/resgatados") ,
-    vitoria("./Sprites/Msgs/vitoria.txt"), derrota("./Sprites/Msgs/derrota.txt") {
+    vitoria("./Sprites/Msgs/vitoria.txt"), derrota("./Sprites/Msgs/derrota.txt"), 
+    pausa("./Sprites/Msgs/pausa.txt") {
     //
 }
 
@@ -75,10 +76,31 @@ void Fase::update() {
     std::string entrada;
     getline(std::cin, entrada);
     system("clear");
-    
-    updateColisao(entrada);
-    updateObjetosJogo(entrada);
-    incrementaResgatados(entrada);
+
+    if (entrada[0] == 'p' || entrada[0] == 'P') {
+        pausaTela();
+    } else if (entrada[0] == 'q' || entrada[0] == 'Q') {
+        telaDerrota();
+        exit(1);
+    } else {
+        updateColisao(entrada);
+        updateObjetosJogo(entrada);
+        incrementaResgatados(entrada);
+    }
+
+}
+
+void Fase::pausaTela() const {
+    std::string entrada;
+    pausa.draw(Game::screen, 18, 55);       
+    while (true) {
+        show(); 
+        getline(std::cin, entrada);
+        system("clear");
+        if (entrada[0] == 'p' || entrada[0] == 'P') {
+            break;
+        }
+    }
 }
 
 void Fase::updateColisao(std::string entrada) const {
@@ -86,7 +108,7 @@ void Fase::updateColisao(std::string entrada) const {
 
     for (const auto&obj : listObjJogo) {
         if (obj != heroi) {
-            if (verificaColisaoObjJogo(*heroi, *obj) && entrada[0] == 'x') {
+            if (verificaColisaoObjJogo(*heroi, *obj) && (entrada[0] == 'x' || entrada[0] == 'X')) {
                 if (obj->getId() == "Pessoa") {
                     if (heroi->getPessoas() < 4) {
                         if (heroi->colideCom(*obj) && obj->getAtivo()) {
@@ -127,7 +149,7 @@ void Fase::updateObjetosJogo(std::string entrada) const {
     }
 }
 
-void Fase::show() {
+void Fase::show() const {
    Game::screen.show();
 }
 
@@ -155,7 +177,7 @@ void Fase::incrementaResgatados(std::string entrada) {
     auto heroi = this->listObjJogo.front();
     int pessoas = heroi->getPessoas();
 
-    if (verificaResgate() && entrada[0] == 'x') {
+    if (verificaResgate() && (entrada[0] == 'x' || entrada[0] == 'X')) {
         // adiciona a pessoa em resgatados e tira do helicoptero
         resgatados += pessoas;
         std::string stringResgatados = std::to_string(resgatados);

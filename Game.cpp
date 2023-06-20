@@ -19,7 +19,6 @@ void Game::run() {
         fase1.show();
 
         if (fase1.verificaFim()) {
-            // preciso dar um jeito pra antes de acabar, descer a gasolina e subir os resg.
             break;
         }
     }

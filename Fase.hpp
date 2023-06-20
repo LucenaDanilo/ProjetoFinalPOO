@@ -15,7 +15,7 @@ public:
     Fase();
     ~Fase();
 
-    void show();
+    void show() const;
 
     virtual void init();
     virtual void draw() const;
@@ -41,7 +41,7 @@ public:
 
 private:
     Sprite background, sprResgatados;
-    Sprite ilha1, ilha2, vitoria, derrota;
+    Sprite ilha1, ilha2, vitoria, derrota, pausa;
     list<ObjetoDeJogo*> listObjJogo;
     int resgatados;
 
@@ -53,6 +53,8 @@ private:
 
     void telaVitoria();
     void telaDerrota();
+
+    void pausaTela() const;
 };
 
 #endif
