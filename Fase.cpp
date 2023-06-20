@@ -128,11 +128,18 @@ bool Fase::verificaResgate() const {
 void Fase::incrementaResgatados() {
     auto heroi = this->listObjJogo.front();
     int pessoas = heroi->getPessoas();
+    std::string stringPessoas = std::to_string(pessoas);
+
 
     if (verificaResgate()) {
+        // adiciona a pessoa em resgatados e tira do helicoptero
         resgatados += pessoas;
         heroi->incrementaPessoas(-pessoas);
         heroi->setPeso(heroi->getPeso() - 55 * pessoas);
+
+        //transforma o display no número de pessoas resgatadas
+        sprResgatados.copiaString(stringPessoas);
+        //sprResgatados.draw(Game::screen, )
     }
 }
 
