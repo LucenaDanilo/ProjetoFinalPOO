@@ -3,6 +3,7 @@
 #include "Game.hpp"
 
 Pessoa::Pessoa(int x, int y) : ObjetoDeJogo("./Sprites/SpritesPessoa/pessoa") , peso(68) {
+    setId("Pessoa");
     setPosX(x);
     setPosY(y);
     ativa();

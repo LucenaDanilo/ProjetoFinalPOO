@@ -35,12 +35,14 @@ public:
     void setPosY(int);
     void setSprite(const string&);
     void setNSprites(int n) {nSprites = n;}
+    inline void setId(std::string s) { id = s; }
 
     int getPosX() const;
     int getPosY() const;
     bool getAtivo() const;
     int getIndSprite() const;
     int getNSprites() const;
+    inline string getId() const { return id; }
 
     void insereSprite(std::string);
     inline Sprite* getSprite() const { return spritesObj[indSprite]; }
@@ -49,6 +51,7 @@ protected:
     SpriteBase* objSprite;
 
 private:
+    std::string id;
     int x, y;
     bool ativo;
     std::vector<Sprite*> spritesObj;

@@ -27,8 +27,9 @@ public:
     inline void setPeso(int c) { carga = c; }
     inline int getPeso() const { return carga; }
 
-    inline void setTanque(int t) { tanque = t; }
+    void setTanque(int t);
     inline int getTanque() const { return tanque; }
+    inline void Abastece(int x) { tanque += x; }
 
     virtual inline void incrementaPessoas(int x) { pessoas += x; }
     virtual inline int getPessoas() { return pessoas; }

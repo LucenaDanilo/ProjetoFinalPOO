@@ -6,6 +6,7 @@ using std::string;
 
 Helicoptero::Helicoptero() : ObjetoDeJogo("./Sprites/SpritesHeli/helicoptero1") , 
     carga(22), tanque(300), pessoas(0), gas(nullptr), loud(nullptr) {
+    setId("Helicoptero");
     setPosX(6);
     setPosY(28);
     ativa();
@@ -92,7 +93,7 @@ void Helicoptero::updatePos(string c) {
 }
 
 void Helicoptero::updateGas() {
-    this->tanque -= 1;
+    this->tanque -= 3;
     string s = "             ";
     int valor = this->tanque/22;
     for (int i = 0; i < valor ; i++) {
@@ -120,3 +121,10 @@ void Helicoptero::setSpriteLoud(Sprite *l) {
     this->loud = l;
 }
 
+void Helicoptero::setTanque(int t) {
+    if (getTanque() + t < 300) {
+        tanque = getTanque() + t;
+    } else {
+        tanque = 300;
+    }
+}

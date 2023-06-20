@@ -86,15 +86,30 @@ void Fase::updateColisao() const {
 
     for (const auto&obj : listObjJogo) {
         if (obj != heroi) {
-            if (heroi->getPessoas() < 4) {
-                if (heroi->colideCom(*obj) && obj->getAtivo()) {
-                    heroi->setPeso(heroi->getPeso() + obj->getPeso());
-                    heroi->incrementaPessoas(1);
+            if (verificaColisaoObjJogo(*heroi, *obj)) {
+                if (obj->getId() == "Pessoa") {
+                    if (heroi->getPessoas() < 4) {
+                        if (heroi->colideCom(*obj) && obj->getAtivo()) {
+                            heroi->setPeso(heroi->getPeso() + obj->getPeso());
+                            heroi->incrementaPessoas(1);
+                            obj->desativa();
+                        }        
+                    } 
+                } else if (obj->getId() == "GalaoGasolina") {
+                    int gas = heroi->getTanque() + obj->getTanque();
+                    heroi->setTanque(gas);
                     obj->desativa();
-                }        
+                }
             }
         }
     }
+}
+
+bool Fase::verificaColisaoObjJogo(ObjetoDeJogo &heroi, ObjetoDeJogo& obj) const {
+    if (heroi.colideCom(obj) && obj.getAtivo()) {
+        return true;
+    }
+    return false;
 }
 
 void Fase::updateObjetosJogo(std::string entrada) const {

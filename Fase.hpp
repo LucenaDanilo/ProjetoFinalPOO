@@ -42,6 +42,7 @@ private:
     list<ObjetoDeJogo*> listObjJogo;
     int resgatados;
 
+    bool verificaColisaoObjJogo(ObjetoDeJogo&, ObjetoDeJogo&) const;
     bool verificaColisaoRescueBase() const;
     bool verificaResgate() const;
     bool verificaVitoria() const;
