@@ -52,10 +52,6 @@ void Sprite::draw(Sprite& screen, int x, int y) const {
     }
 }
 
-void Sprite::update() {
-    //
-}
-
 void Sprite::limpaScreen(const Sprite &screenLimpa) {
     int c = 0;
 

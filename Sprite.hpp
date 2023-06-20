@@ -15,7 +15,7 @@ public:
     //Sprite( const Sprite& ) {}
 
     virtual void init() {}
-    virtual void update();
+    virtual void update() {}
     virtual void draw() const {}
     virtual void draw(Sprite&, int, int) const;
 

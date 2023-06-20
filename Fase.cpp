@@ -76,33 +76,41 @@ void Fase::update() {
     getline(std::cin, entrada);
     system("clear");
     
-    updateColisao();
+    updateColisao(entrada);
     updateObjetosJogo(entrada);
-    incrementaResgatados();
+    incrementaResgatados(entrada);
 }
 
-void Fase::updateColisao() const {
+void Fase::updateColisao(std::string entrada) const {
     auto heroi = listObjJogo.front();
 
     for (const auto&obj : listObjJogo) {
         if (obj != heroi) {
-            if (verificaColisaoObjJogo(*heroi, *obj)) {
+            if (verificaColisaoObjJogo(*heroi, *obj) && entrada[0] == 'x') {
                 if (obj->getId() == "Pessoa") {
                     if (heroi->getPessoas() < 4) {
                         if (heroi->colideCom(*obj) && obj->getAtivo()) {
-                            heroi->setPeso(heroi->getPeso() + obj->getPeso());
-                            heroi->incrementaPessoas(1);
-                            obj->desativa();
+                            capturaPessoa(heroi, obj);
                         }        
                     } 
                 } else if (obj->getId() == "GalaoGasolina") {
-                    int gas = heroi->getTanque() + obj->getTanque();
-                    heroi->setTanque(gas);
-                    obj->desativa();
+                    capturaGalao(heroi, obj);
                 }
             }
         }
     }
+}
+
+void Fase::capturaPessoa(ObjetoDeJogo *heroi, ObjetoDeJogo *obj) const {
+    heroi->setPeso(heroi->getPeso() + obj->getPeso());
+    heroi->incrementaPessoas(1);
+    obj->desativa();
+}
+
+void Fase::capturaGalao(ObjetoDeJogo *heroi, ObjetoDeJogo *obj) const {
+    int gas = heroi->getTanque() + obj->getTanque();
+    heroi->setTanque(gas);
+    obj->desativa();  
 }
 
 bool Fase::verificaColisaoObjJogo(ObjetoDeJogo &heroi, ObjetoDeJogo& obj) const {
@@ -143,11 +151,11 @@ bool Fase::verificaResgate() const {
     return false;
 }
 
-void Fase::incrementaResgatados() {
+void Fase::incrementaResgatados(std::string entrada) {
     auto heroi = this->listObjJogo.front();
     int pessoas = heroi->getPessoas();
 
-    if (verificaResgate()) {
+    if (verificaResgate() && entrada[0] == 'x') {
         // adiciona a pessoa em resgatados e tira do helicoptero
         resgatados += pessoas;
         std::string stringResgatados = std::to_string(resgatados);

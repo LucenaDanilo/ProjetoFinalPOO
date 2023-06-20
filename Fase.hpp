@@ -27,14 +27,17 @@ public:
     void drawBackground() const;
     void drawObjetosJogo() const;
 
-    void updateColisao() const;
+    void updateColisao(std::string) const;
     void updateObjetosJogo(string) const;
 
     bool verificaFim();
 
     void setObjetoJogo(ObjetoDeJogo*);
-    void incrementaResgatados();
+    void incrementaResgatados(std::string);
     inline int getResgatados() const { return resgatados; }
+
+    void capturaPessoa(ObjetoDeJogo*, ObjetoDeJogo*) const;
+    void capturaGalao(ObjetoDeJogo*, ObjetoDeJogo*) const;
 
 private:
     Sprite background, sprResgatados;
