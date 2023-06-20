@@ -3,6 +3,7 @@
 #include "ObjetoDeJogo.hpp"
 #include "Helicoptero.hpp"
 #include "Pessoa.hpp"
+#include "GalaoGasolina.hpp"
 #include <iostream>
 #include <list>
 
@@ -36,13 +37,13 @@ void Fase::initObjetosJogo() {
      // iniciando os objetos de jogo
     Helicoptero* heroi = new Helicoptero;    
 
-    ObjetoDeJogo *objs[] = {heroi, new Pessoa(32, 60), 
-        new Pessoa(32, 110), new Pessoa(32, 54), new Pessoa(32, 63), new Pessoa(32, 116)};
+    ObjetoDeJogo *objs[] = {heroi, new Pessoa(32, 60), new Pessoa(32, 110), 
+    new Pessoa(32, 54), new Pessoa(32, 63), new Pessoa(32, 116), new GalaoGasolina};
 
-    for (int i = 0; i < 6; i++) {
-        listObjJogo.push_back(objs[i]);
-        objs[i]->init();
-    }   
+    for (const auto& obj : objs) {
+        listObjJogo.push_back(obj);
+        obj->init();
+    } 
 }
 
 void Fase::draw() const {
