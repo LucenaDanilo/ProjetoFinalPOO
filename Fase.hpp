@@ -11,6 +11,15 @@
 using std::list, std::string;
 
 class Fase : public GameBase {
+    friend ostream &operator<<(ostream &out, Fase &obj);
+
+    Fase &operator<<(ObjetoDeJogo &obj) {
+        resgatados += 1;
+        obj.incrementaPessoas(-1);
+        obj.setPeso(obj.getPeso() - 68);
+        return *this;
+    }
+
 public:
 
     Fase();

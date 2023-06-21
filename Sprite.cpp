@@ -12,6 +12,13 @@ Sprite::Sprite( string path ) : SpriteBase(path) , w(0), h(0) {
         readPath(path);
 }
 
+ostream &operator<<(ostream &out, Sprite &obj) {
+    for (const string& line : obj.vecString) {
+        cout << line << endl;
+    }
+    return out;
+}
+
 void Sprite::readPath( string p ) {
     setPath(p);
     int max = 0;

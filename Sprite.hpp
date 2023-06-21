@@ -6,9 +6,12 @@
 
 #include "SpriteBase.hpp"
 
-using std::string, std::vector;
+using std::string, std::vector, std::ostream, std::endl, std::cout;
 
 class Sprite : public SpriteBase {
+
+    friend ostream &operator<<(ostream &out, Sprite &obj);
+
 public:
 
     Sprite( string = "");

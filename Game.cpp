@@ -11,12 +11,12 @@ void Game::run() {
     Fase fase1;
     fase1.init();
     fase1.draw();
-    fase1.show();
+    std::cout << fase1;
 
     while (true) {
         fase1.update();
         fase1.draw();
-        fase1.show();
+        std::cout << fase1;
 
         if (fase1.verificaFim()) {
             break;

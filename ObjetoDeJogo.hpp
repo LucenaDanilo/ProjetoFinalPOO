@@ -8,6 +8,7 @@
 using std::string;
 
 class ObjetoDeJogo : public GameBase {
+
 public:
     ObjetoDeJogo(const string&);
     ~ObjetoDeJogo();

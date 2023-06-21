@@ -20,6 +20,11 @@ Fase::~Fase() {
     }
 }
 
+ostream &operator<<(ostream &out, Fase &obj) {
+    std::cout << Game::screen;
+    return out;
+}
+
 void Fase::init() {
     system("clear");
 
@@ -156,7 +161,7 @@ void Fase::updateObjetosJogo(std::string entrada) const {
 }
 
 void Fase::show() const {
-   Game::screen.show();
+   std::cout << Game::screen;
 }
 
 bool Fase::verificaColisaoRescueBase() const {
@@ -184,16 +189,16 @@ void Fase::incrementaResgatados(std::string entrada) {
     int pessoasResgatadas = heroi->getPessoas();
 
     if (verificaResgate() && (entrada[0] == 'x' || entrada[0] == 'X')) {
-        // Adiciona a pessoa em resgatados e tira do helicoptero
-        resgatados += pessoasResgatadas;
-        heroi->incrementaPessoas(-pessoasResgatadas);
-        heroi->setPeso(heroi->getPeso() - 68 * pessoasResgatadas);
+        // Resgata a pessoa e a tira do helicoptero
+        for (int i = 0; i < pessoasResgatadas; i++) {
+            *this << *heroi;
+        }
 
         // Transforma o display no número de pessoas resgatadas
         std::string mensagemResgatados = std::to_string(resgatados);
         sprResgatados.copiaString(mensagemResgatados);
 
-        msg.setTexto("[ Resgate Realizado! ]");
+        msg.setTexto("[ RESGATE EFETUADO ]");
     }
 }
 
@@ -239,13 +244,13 @@ void Fase::telaVitoria() {
     heroi->draw();
     vitoria.draw(Game::screen, 18, 50);
     system("clear");
-    Game::screen.show();
+    std::cout << Game::screen;
 }
 
 void Fase::telaDerrota() {
     derrota.draw(Game::screen, 18, 45);
     system("clear");
-    Game::screen.show();
+    std::cout << Game::screen;
 }
 
 void Fase::setObjetoJogo(ObjetoDeJogo* obj) {

@@ -24,9 +24,7 @@ bool ObjetoDeJogo::colideCom(const ObjetoDeJogo &obj) const {
     h2 = obj.objSprite->getH();
     w2 = obj.objSprite->getW();
 
-    //std::cout << "x1: " << x1 << " | h1: " << h1 << " | x2: " << x2;
-    if ((x1 + h1 >= x2) && (x1 <= x2)) {
-        //std::cout << "primeiro!";
+    if ((x1 + h1 > x2) && (x1 < x2 + h2)) {
         if ((y1 + w1 > y2) && (y1 < y2)) {
             return true;
         }
