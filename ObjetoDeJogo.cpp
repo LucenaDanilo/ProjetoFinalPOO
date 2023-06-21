@@ -2,7 +2,7 @@
 #include "Sprite.hpp"
 
 ObjetoDeJogo::ObjetoDeJogo(const string& s) : GameBase(), objSprite(nullptr)
-    , x(0), y(0), ativo(false), indSprite(0) {
+    , x(0), y(0), ativo(false), indSprite(0), direita(true) {
     setSprite(s);
 }
 
@@ -32,9 +32,9 @@ bool ObjetoDeJogo::colideCom(const ObjetoDeJogo &obj) const {
 }
 
 void ObjetoDeJogo::updateSprite() {
-    indSprite++;
-    if (indSprite > nSprites - 1) {
-        indSprite = 0;
+    setIndSprites(getIndSprite() + 1);
+    if (getIndSprite() > getNSprites() - 1) {
+        setIndSprites(0);
     }
 }
 

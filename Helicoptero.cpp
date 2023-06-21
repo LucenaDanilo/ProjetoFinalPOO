@@ -5,7 +5,7 @@
 using std::string;
 
 Helicoptero::Helicoptero() : ObjetoDeJogo("./Sprites/SpritesHeli/helicoptero1") , 
-    carga(22), tanque(300), pessoas(0), gas(nullptr), loud(nullptr) {
+    carga(22), tanque(300), pessoas(0), gas(nullptr), loud(nullptr), contPassosEsquerda(0) {
     setId("Helicoptero");
     setPosX(6);
     setPosY(28);
@@ -16,7 +16,10 @@ void Helicoptero::init() {
     // Init no array de sprites
     string paths[] = {"./Sprites/SpritesHeli/helicoptero1", "./Sprites/SpritesHeli/helicoptero2" ,
     "./Sprites/SpritesHeli/helicoptero3", "./Sprites/SpritesHeli/helicoptero4", "./Sprites/SpritesHeli/helicoptero5" ,
-    "./Sprites/SpritesHeli/helicoptero6", "./Sprites/SpritesHeli/helicoptero7", "./Sprites/SpritesHeli/helicoptero8"};
+    "./Sprites/SpritesHeli/helicoptero6", "./Sprites/SpritesHeli/helicoptero7", "./Sprites/SpritesHeli/helicoptero8" ,
+    "./Sprites/SpritesHeli/helicoptero9", "./Sprites/SpritesHeli/helicoptero10", "./Sprites/SpritesHeli/helicoptero11" ,
+    "./Sprites/SpritesHeli/helicoptero12", "./Sprites/SpritesHeli/helicoptero13" , "./Sprites/SpritesHeli/helicoptero14", 
+    "./Sprites/SpritesHeli/helicoptero15", "./Sprites/SpritesHeli/helicoptero16"};
 
     int cont = 0;
     for (const auto&path: paths) {
@@ -66,6 +69,24 @@ void Helicoptero::update(string entrada) {
     updateLoud();   
 }
 
+void Helicoptero::updateSprite() {
+    if (getSentidoDireita()) {
+        setIndSprites(getIndSprite() + 1);
+        if (getIndSprite() > 7) {
+            setIndSprites(0);
+        }
+    } else {
+        if (contPassosEsquerda < 8) {
+            setIndSprites(8 + contPassosEsquerda);
+        } else {
+            setIndSprites(8);
+            zeraPassosEsquerda();
+        }
+        
+        incrementaPassosEsquerda();
+    }
+}
+
 void Helicoptero::updatePos(string c) {
     int x = getPosX();
     int y = getPosY();
@@ -81,11 +102,13 @@ void Helicoptero::updatePos(string c) {
             moveTo(x+1, y);
         }
     } else if (c[0] == 'a' || c[0] == 'A') {
+        sentidoEsquerda();
         if (y > 2) {
             moveTo(x, y-3);
         }
         
     } else if (c[0] == 'd' || c[0] == 'D') {
+        sentidoDireita();
         if (y + w < 157) {
             moveTo(x, y+3);
         }   

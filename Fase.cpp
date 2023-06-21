@@ -173,6 +173,7 @@ bool Fase::verificaResgate() const {
     return false;
 }
 
+// MELHORAR ISSO AQ TA RUIM
 void Fase::incrementaResgatados(std::string entrada) {
     auto heroi = this->listObjJogo.front();
     int pessoas = heroi->getPessoas();

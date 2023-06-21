@@ -21,6 +21,7 @@ public:
     void setSpriteLoud(Sprite*);
 
     void updatePos(string);
+    virtual void updateSprite();
     void updateGas();
     void updateLoud();
 
@@ -36,11 +37,14 @@ public:
 
 private:
     int carga, tanque;
-    int pessoas;
+    int pessoas, contPassosEsquerda;
     Sprite *gas, *loud;
 
     void drawGas() const;
     void drawLoud() const;
+
+    inline void incrementaPassosEsquerda() { contPassosEsquerda++; }
+    inline void zeraPassosEsquerda() { contPassosEsquerda = 0; }
 
 };
 
