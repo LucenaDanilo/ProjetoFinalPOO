@@ -135,7 +135,7 @@ void Fase::capturaPessoa(ObjetoDeJogo *heroi, ObjetoDeJogo *obj) {
     heroi->incrementaPessoas(1);
     obj->desativa();
 
-    msg.setTexto("[ Embarque Realizado! ]");
+    msg.setTexto("[ EMBARQUE REALIZADO ]");
 }
 
 void Fase::capturaGalao(ObjetoDeJogo *heroi, ObjetoDeJogo *obj) {
@@ -143,7 +143,7 @@ void Fase::capturaGalao(ObjetoDeJogo *heroi, ObjetoDeJogo *obj) {
     heroi->setTanque(gas);
     obj->desativa();
 
-    msg.setTexto("[ Gasolina Abastecida ]");
+    msg.setTexto("[ ABASTECIMENTO FEITO ]");
 }
 
 bool Fase::verificaColisaoObjJogo(ObjetoDeJogo &heroi, ObjetoDeJogo& obj) const {

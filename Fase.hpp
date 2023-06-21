@@ -25,11 +25,11 @@ public:
     Fase();
     ~Fase();
 
-    void show() const;
-
     virtual void init();
     virtual void draw() const;
     virtual void update();
+
+    void show() const;
     
     void initBackgroud();
     void initObjetosJogo();
