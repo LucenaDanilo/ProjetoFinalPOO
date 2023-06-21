@@ -6,6 +6,7 @@
 #include "GameBase.hpp"
 #include "Sprite.hpp"
 #include "ObjetoDeJogo.hpp"
+#include "Mensagem.hpp"
 
 using std::list, std::string;
 
@@ -27,7 +28,7 @@ public:
     void drawBackground() const;
     void drawObjetosJogo() const;
 
-    void updateColisao(std::string) const;
+    void updateColisao(std::string);
     void updateObjetosJogo(string) const;
 
     bool verificaFim();
@@ -36,14 +37,15 @@ public:
     void incrementaResgatados(std::string);
     inline int getResgatados() const { return resgatados; }
 
-    void capturaPessoa(ObjetoDeJogo*, ObjetoDeJogo*) const;
-    void capturaGalao(ObjetoDeJogo*, ObjetoDeJogo*) const;
+    void capturaPessoa(ObjetoDeJogo*, ObjetoDeJogo*);
+    void capturaGalao(ObjetoDeJogo*, ObjetoDeJogo*);
 
 private:
     Sprite background, sprResgatados;
     Sprite ilha1, ilha2, vitoria, derrota, pausa;
     list<ObjetoDeJogo*> listObjJogo;
     int resgatados;
+    Mensagem msg;
 
     bool verificaColisaoObjJogo(ObjetoDeJogo&, ObjetoDeJogo&) const;
     bool verificaColisaoRescueBase() const;

@@ -3,7 +3,7 @@
 #include "Game.hpp"
 
 GalaoGasolina::GalaoGasolina() : ObjetoDeJogo("./Sprites/SpritesGalao/galao1"), 
-        tanque(100), peso(0) {
+        tanque(150), peso(0) {
     setId("GalaoGasolina");
     setPosX(28);
     setPosY(144);

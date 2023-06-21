@@ -4,6 +4,7 @@
 #include "Helicoptero.hpp"
 #include "Pessoa.hpp"
 #include "GalaoGasolina.hpp"
+#include "Mensagem.hpp"
 #include <iostream>
 #include <list>
 
@@ -50,6 +51,7 @@ void Fase::initObjetosJogo() {
 void Fase::draw() const {
     drawBackground();
     drawObjetosJogo();
+    msg.displayMensagemTela();
 }
 
 void Fase::drawBackground() const {
@@ -67,11 +69,12 @@ void Fase::drawObjetosJogo() const {
     for (const auto&obj : listObjJogo) {
         if (obj->getAtivo())
             obj->draw();
-    }  
+    }
 }
 
 void Fase::update() {
     // dar update no array de objetos de jogo
+    msg.setTexto("");
     
     std::string entrada;
     getline(std::cin, entrada);
@@ -87,7 +90,6 @@ void Fase::update() {
         updateObjetosJogo(entrada);
         incrementaResgatados(entrada);
     }
-
 }
 
 void Fase::pausaTela() const {
@@ -103,7 +105,7 @@ void Fase::pausaTela() const {
     }
 }
 
-void Fase::updateColisao(std::string entrada) const {
+void Fase::updateColisao(std::string entrada) {
     auto heroi = listObjJogo.front();
 
     for (const auto&obj : listObjJogo) {
@@ -123,16 +125,20 @@ void Fase::updateColisao(std::string entrada) const {
     }
 }
 
-void Fase::capturaPessoa(ObjetoDeJogo *heroi, ObjetoDeJogo *obj) const {
+void Fase::capturaPessoa(ObjetoDeJogo *heroi, ObjetoDeJogo *obj) {
     heroi->setPeso(heroi->getPeso() + obj->getPeso());
     heroi->incrementaPessoas(1);
     obj->desativa();
+
+    msg.setTexto("[ Embarque Realizado! ]");
 }
 
-void Fase::capturaGalao(ObjetoDeJogo *heroi, ObjetoDeJogo *obj) const {
+void Fase::capturaGalao(ObjetoDeJogo *heroi, ObjetoDeJogo *obj) {
     int gas = heroi->getTanque() + obj->getTanque();
     heroi->setTanque(gas);
-    obj->desativa();  
+    obj->desativa();
+
+    msg.setTexto("[ Gasolina Abastecida ]");
 }
 
 bool Fase::verificaColisaoObjJogo(ObjetoDeJogo &heroi, ObjetoDeJogo& obj) const {
@@ -187,6 +193,8 @@ void Fase::incrementaResgatados(std::string entrada) {
 
         //transforma o display no número de pessoas resgatadas
         sprResgatados.copiaString(stringResgatados);
+
+        msg.setTexto("[ Resgate Realizado! ]");
     }
 }
 

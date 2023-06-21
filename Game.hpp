@@ -13,9 +13,8 @@ public:
 
     static Sprite screen;
     static Sprite screenLimpa;
-    
+
 private:
-    
     
 };
 
