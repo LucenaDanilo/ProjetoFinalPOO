@@ -12,7 +12,7 @@ public:
         texto.draw(Game::screen, 4, 68);
     }
 
-    void setTexto(std::string s) {texto.copiaString(s);}
+    void setTexto(std::string s) { texto.copiaString(s); }
     
 private:
     Sprite texto;

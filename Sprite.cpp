@@ -9,14 +9,14 @@ using std::ifstream, std::getline, std::cout, std::endl;
 Sprite::Sprite( string path ) : SpriteBase(path) , w(0), h(0) {
 
     if (path != "")
-        setPath(path);
+        readPath(path);
 }
 
-void Sprite::setPath( string p ) {
-    path = p;
+void Sprite::readPath( string p ) {
+    setPath(p);
     int max = 0;
 
-    ifstream file(path);
+    ifstream file(p);
 
     if (file.is_open()) {
         string line;
@@ -30,7 +30,7 @@ void Sprite::setPath( string p ) {
         file.close();
     }
     else {
-        cout << "Erro ao abrir o arquivo: " << path << endl;
+        cout << "Erro ao abrir o arquivo: " << p << endl;
     }
     w = max + 1;
 }

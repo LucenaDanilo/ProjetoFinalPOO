@@ -19,12 +19,15 @@ public:
     virtual void draw(Sprite&, int, int) const = 0;
 
     virtual void show() const = 0;
-    virtual void setPath( string ) = 0;
-
+   
     virtual inline int getH() const = 0;
     virtual inline int getW() const = 0;
 
-protected:
+    virtual void readPath( string ) = 0;
+    inline string getPath() { return path; }
+    inline void setPath(string s) { path = s; }
+
+private:
     string path;
 };
 

@@ -16,7 +16,7 @@ public:
     virtual void draw(Sprite&, int, int) const {}
 
     virtual void show() const {}
-    virtual void setPath( string ) {}
+    virtual void readPath( string ) {}
 
     virtual inline int getH() const {}
     virtual inline int getW() const {}

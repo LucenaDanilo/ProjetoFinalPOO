@@ -12,25 +12,27 @@ class Sprite : public SpriteBase {
 public:
 
     Sprite( string = "");
-    //Sprite( const Sprite& ) {}
 
+    // Métodos virtuais de GameBase
     virtual void init() {}
     virtual void update() {}
     virtual void draw() const {}
+
+    // Sobrecarga em draw
     virtual void draw(Sprite&, int, int) const;
 
     virtual void show() const;
-
+    virtual void readPath( string );
     void limpaScreen(const Sprite&);
+    void copiaString(const string&);
 
-    virtual void setPath( string );
-    void setH() {}
-    void setW() {}
+    // Setters
+    inline void setH(int h) { this->h = h; }
+    inline void setW(int w) {this->w = w; }
 
+    // Getters
     virtual inline int getH() const { return h; }
     virtual inline int getW() const { return w; }
-
-    void copiaString(const string&);
 
 private:
     vector<string> vecString;

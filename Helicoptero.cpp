@@ -32,8 +32,8 @@ void Helicoptero::init() {
     // Init no display do Gas e loud
     Sprite* gas = new Sprite;
     Sprite* loud = new Sprite;
-    gas->setPath("./Sprites/tanque");
-    loud->setPath("./Sprites/carga");
+    gas->readPath("./Sprites/tanque");
+    loud->readPath("./Sprites/carga");
     this->setSpriteGas(gas);
     this->setSpriteLoud(loud);
 }

@@ -30,9 +30,9 @@ void Fase::init() {
 
 void Fase::initBackgroud() {
     // iniciando o background
-    background.setPath("./Sprites/pontes");
-    ilha1.setPath("./Sprites/ilha");
-    ilha2.setPath("./Sprites/ilha");
+    background.readPath("./Sprites/pontes");
+    ilha1.readPath("./Sprites/ilha");
+    ilha2.readPath("./Sprites/ilha");
 }
 
 void Fase::initObjetosJogo() {
@@ -179,20 +179,19 @@ bool Fase::verificaResgate() const {
     return false;
 }
 
-// MELHORAR ISSO AQ TA RUIM
 void Fase::incrementaResgatados(std::string entrada) {
     auto heroi = this->listObjJogo.front();
-    int pessoas = heroi->getPessoas();
+    int pessoasResgatadas = heroi->getPessoas();
 
     if (verificaResgate() && (entrada[0] == 'x' || entrada[0] == 'X')) {
-        // adiciona a pessoa em resgatados e tira do helicoptero
-        resgatados += pessoas;
-        std::string stringResgatados = std::to_string(resgatados);
-        heroi->incrementaPessoas(-pessoas);
-        heroi->setPeso(heroi->getPeso() - 68 * pessoas);
+        // Adiciona a pessoa em resgatados e tira do helicoptero
+        resgatados += pessoasResgatadas;
+        heroi->incrementaPessoas(-pessoasResgatadas);
+        heroi->setPeso(heroi->getPeso() - 68 * pessoasResgatadas);
 
-        //transforma o display no número de pessoas resgatadas
-        sprResgatados.copiaString(stringResgatados);
+        // Transforma o display no número de pessoas resgatadas
+        std::string mensagemResgatados = std::to_string(resgatados);
+        sprResgatados.copiaString(mensagemResgatados);
 
         msg.setTexto("[ Resgate Realizado! ]");
     }
