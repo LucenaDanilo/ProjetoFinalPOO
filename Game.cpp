@@ -18,6 +18,8 @@ void Game::run() {
 
         if (menu.getStartGame()) {
             break;
+        } else if (menu.getOpenMenuHelp()) {
+            menu.showHelpScreen();
         }
     }
 

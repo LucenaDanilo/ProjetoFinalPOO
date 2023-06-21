@@ -18,7 +18,8 @@ class Menu {
 public:
 
     Menu() : screenMenu("./Sprites/Menu/screenMenu"), screenMenuLimpa("./Sprites/Menu/screenMenu") , sprHeli("./Sprites/Menu/heliFrente1") , 
-        selecaoEsq("./Sprites/Menu/selecionadoEsquerdo") , selecaoDir("./Sprites/Menu/selecionadoDireito"), indPos(0), startGame(false) {
+        selecaoEsq("./Sprites/Menu/selecionadoEsquerdo") , selecaoDir("./Sprites/Menu/selecionadoDireito"), indPos(0), startGame(false) , 
+        screenHelp("./Sprites/Menu/screenHelp"), openMenuHelp(false) {
         //
         posSelecoes[0] = 25;
         posSelecoes[1] = 27;
@@ -28,6 +29,7 @@ public:
     virtual void init() {
         system("clear");
         sprHeli.draw(screenMenu, 5, 60);
+        sprHeli.draw(screenHelp, 4, 60);
         selecaoEsq.draw(screenMenu, 25, 62);
         selecaoDir.draw(screenMenu, 25, 89);
     }
@@ -57,25 +59,38 @@ public:
             if (indPos == 0) {
                 setStartGame();
             } else if (indPos == 1) {
-                //
+                setMenuHelp(true);
             } else {
                 exit(0);
             }
         }
     }
 
-    inline void setStartGame() {
-        startGame = true;
-    }
-
+    inline void setStartGame() { startGame = true; }
     inline bool getStartGame() { return startGame; }
+
+    inline void setMenuHelp(bool b) { openMenuHelp = b; }
+    inline bool getOpenMenuHelp() { return openMenuHelp; }
+
+    void showHelpScreen() {
+        while (true) {
+            std::cout << screenHelp;
+            std::string entrada;
+            getline(std::cin, entrada);
+            system("clear");
+            if (entrada[0] == 'x' || entrada[0] == 'X') {
+                setMenuHelp(false);
+                break;
+            } 
+        }
+    }
 
 private:
     std::vector<Sprite*> sprHelis;
     Sprite screenMenu, screenMenuLimpa , screenHelp;
     Sprite sprHeli, selecaoEsq, selecaoDir;
     int posSelecoes[3], indPos;
-    bool startGame;
+    bool startGame, openMenuHelp;
 };
 
 #endif
