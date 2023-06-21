@@ -13,26 +13,24 @@ public:
 
     virtual void init();
     virtual void update() {}
-    virtual void updateVitoria();
     virtual void update(string);
     virtual void draw() const;
 
-    void setSpriteGas(Sprite*);
-    void setSpriteLoud(Sprite*);
-
     void updatePos(string);
+    virtual void updateVitoria();
     virtual void updateSprite();
     void updateGas();
     void updateLoud();
 
-    inline void setPeso(int c) { carga = c; }
-    inline int getPeso() const { return carga; }
-
     void setTanque(int t);
-    inline int getTanque() const { return tanque; }
+    void setSpriteGas(Sprite*);
+    void setSpriteLoud(Sprite*);
+    inline void setPeso(int c) { carga = c; }
     inline void Abastece(int x) { tanque += x; }
-
     virtual inline void incrementaPessoas(int x) { pessoas += x; }
+
+    inline int getPeso() const { return carga; }
+    inline int getTanque() const { return tanque; }
     virtual inline int getPessoas() { return pessoas; }
 
 private:
